@@ -1,7 +1,9 @@
+/* Center the content inside the root element */
 #root {
   text-align: center;
 }
 
+/* Header styles */
 header {
   box-shadow: #444 0px 2px 4px;
   color: white;
@@ -18,11 +20,13 @@ header {
   gap: 20px;
 }
 
+/* Logo image inside header */
 header>img {
   width: 60px;
   margin-right: 15px;
 }
 
+/* Animate header title and ALL image on load */
 header>h1,
 img {
   animation: headerDropDown 1s ease;
@@ -40,6 +44,7 @@ img {
   }
 }
 
+/* Footer styles */
 footer {
   position: fixed;
   color: white;
@@ -52,6 +57,7 @@ footer {
   z-index: 1000;
 }
 
+/* Animate footer text on load */
 footer>small {
   animation: footerFlowUp 1.2s ease;
 }
@@ -68,34 +74,28 @@ footer>small {
   }
 }
 
+/* Add-item form container */
 .add-item {
   display: flex;
   gap: 1rem;
-  /* margin: 16px; */
+  margin-bottom: 20px;
 }
 
+/* List styling for item list */
 .item-list {
   list-style: none;
   padding: 0;
+  max-width: 420px;
+  margin: 0 0;
+
 }
 
+/* Container for items */
 .items {
   padding: 2rem;
 }
 
-.remove-btn {
-  background: transparent;
-  border: none;
-  color: red;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.add-item {
-  margin-bottom: 20px;
-}
-
+/* Input styles for add-item form */
 .add-item input {
   padding: 10px;
   font-size: 16px;
@@ -111,6 +111,7 @@ footer>small {
   outline: none;
 }
 
+/* Button styles for add-item form */
 .add-item button {
   padding: 10px 20px;
   font-size: 16px;
@@ -122,11 +123,18 @@ footer>small {
   transition: background-color 0.3s;
 }
 
-.item-list {
-  max-width: 420px;
-  margin: 0 0;
+/* Remove X button styles */
+.remove-btn {
+  background: transparent;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
 }
 
+
+/* List item styles */
 .item-list>li {
   padding: 10px 0;
   display: flex;
@@ -136,8 +144,55 @@ footer>small {
   transition: background-color 0.5s, color 0.5s, font-weight 0.5s;
 }
 
+/* Hover effect for list items */
 .item-list>li:hover {
   font-weight: bold;
   color: #333;
   background-color: #d3ffc8;
+}
+
+/* Main content area using CSS Grid */
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+/* Left side */
+.items {
+  grid-column: 1;
+}
+
+/* Right side */
+.products-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column: 3;
+  padding: 2rem;
+}
+
+/* Make .products a grid container that wraps items */
+.products-section .products {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+
+.products-section img {
+  width: 100%;
+  height: 100px;
+  object-fit: contain;
+  max-height: 100px;
+}
+
+.product-box {
+  border: #444 1px solid;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: rgb(179, 255, 230);
 }
