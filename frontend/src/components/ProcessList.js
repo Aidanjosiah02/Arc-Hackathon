@@ -33,22 +33,6 @@ async function processItems(items) {
     const allResults = await Promise.all(fetchPromises);
     console.log(allResults.flat());
     return allResults.flat();
-
-        // const quantity = item.quantity
-        // fetch(url)
-        //     .then(response => {
-        //         if (!response.ok) {
-        //             throw new Error(`HTTP error! status: ${response.status}`);
-        //         }
-        //         return response.json(); // Parse JSON response
-        //     })
-        //     .then(data => {
-        //         getItems(data)
-        //         // Process your data here
-        //     })
-        //     .catch(error => {
-        //         console.error("Fetch error:", error);
-        //     });
 }
 
 export default processItems; 

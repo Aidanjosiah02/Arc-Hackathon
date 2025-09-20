@@ -7,7 +7,7 @@
 header {
   box-shadow: #444 0px 2px 4px;
   color: white;
-  background-image: linear-gradient(to right, #8ddc39, #CDDC39);
+  background-image: linear-gradient(to right, #39dcb9, #90dc39);
   padding: 30px 0;
   z-index: 1000;
   display: flex;
@@ -28,7 +28,7 @@ header>img {
 
 /* Animate header title and ALL image on load */
 header>h1,
-img {
+header>img {
   animation: headerDropDown 1s ease;
 }
 
@@ -53,7 +53,7 @@ footer {
   width: 100%;
   box-shadow: #444 0px -2px 4px;
   padding: 30px 0;
-  background-image: linear-gradient(to right, #CDDC39, #8ddc39);
+  background-image: linear-gradient(to right, #90dc39, #39dcb9,);
   z-index: 1000;
 }
 
@@ -169,7 +169,7 @@ footer>small {
 .products-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-column: 3;
+  grid-column: 2;
   padding: 2rem;
 }
 
@@ -195,4 +195,20 @@ footer>small {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
   background-color: rgb(179, 255, 230);
+}
+
+.product-image {
+  animation: dropDown 1s ease;
+}
+
+@keyframes dropDown {
+  0% {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
