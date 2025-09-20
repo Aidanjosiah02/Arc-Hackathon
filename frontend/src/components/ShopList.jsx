@@ -6,7 +6,7 @@ import CartItems from './CartItems';
 // Shopping List Component
 // Includes the input form, item list, and product results
 function ShopList() {
-    
+
     const [input, setInput] = useState('');
     const [quantity, setQuantity] = useState(1);
     const [items, setItems] = useState([]);
@@ -19,7 +19,7 @@ function ShopList() {
         if (products.length > 0)
             setShowProducts(true);
     }, [products]);
-    
+
     // Add the item from the form to the list
     // Reset input and quantity
     function handleAdd(event) {
@@ -61,17 +61,18 @@ function ShopList() {
     ))
 
     // Add selected product to order list with quantity
+    // Clone to avoid reference issues
     function addToSelection(item, productCount) {
         let itemPersist = structuredClone(item);
         itemPersist.count = productCount
-        setOrderList([...orderList, itemPersist])
+        setOrderList(prev => [...prev, itemPersist])
         console.log(orderList);
     }
 
 
     // Render the component
     return (
-        <section className='main-container'>
+        <>
             <section className='items'>
                 <form onSubmit={handleAdd} className='add-item'>
                     <input type="text" placeholder="Apples" value={input} onChange={event => setInput(event.target.value)} required />
@@ -83,11 +84,11 @@ function ShopList() {
                 </ul>
                 <button onClick={handleSubmit}>Submit</button>
             </section>
+            <CartItems orderList={orderList} />
             <section className='products-section'>
-                {showProducts && <ProductBox products={products} addToSelection={addToSelection}/>}
+                {showProducts && <ProductBox products={products} addToSelection={addToSelection} />}
             </section>
-            <CartItems />
-        </section>
+        </>
     );
 };
 

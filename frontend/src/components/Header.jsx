@@ -1,5 +1,4 @@
-import Logo from '../assets/logo.png'
-//https://cdn-icons-png.flaticon.com/512/4647/4647563.png
+import Logo from '../assets/pricesleugh_logo.png'
 
 export default function Header() {
     return (

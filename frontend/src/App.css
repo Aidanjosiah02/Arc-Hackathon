@@ -151,33 +151,26 @@ footer>small {
   background-color: #d3ffc8;
 }
 
-/* Main content area using CSS Grid */
-.main-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  width: 100%;
-  align-items: flex-start;
-}
 
-/* Left side */
 .items {
   grid-column: 1;
 }
 
-/* Right side */
 .products-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   grid-column: 2;
   padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* Make .products a grid container that wraps items */
+/* Make .products a responsive grid container that wraps items */
 .products-section .products {
   display: grid;
   gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  width: 100%;
 }
 
 .products-section img {
@@ -199,6 +192,16 @@ footer>small {
 
 .product-image {
   animation: dropDown 1s ease;
+}
+
+.cart-item {
+  border: #444 1px solid;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: rgb(255, 223, 179);
 }
 
 @keyframes dropDown {
