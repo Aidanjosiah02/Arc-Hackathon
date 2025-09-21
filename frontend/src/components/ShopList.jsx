@@ -111,6 +111,7 @@ function ShopList() {
                     required
                 />
                 <button type="submit" style={{ margin: "10px" }}>Set postal code</button>
+                <span>Currently: {postalCode}</span>
             </form>
             <section className='items'>
                 <label htmlFor='add-type'>Add items to shopping list</label>
