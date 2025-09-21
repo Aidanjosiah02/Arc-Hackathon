@@ -130,7 +130,7 @@ function ShopList() {
                 <button onClick={clearProducts}>Clear Result</button>
             </section>
             <CartItems orderList={orderList} setTotalCost={setTotalCost} removeFromCart={removeFromCart} />
-            <section className="total-cost" style={{color: "white"}}>Total Cost: ${totalCost}</section>
+            <section className="total-cost" style={{color: "white"}}>Total Cost: ${totalCost.toFixed(2)}</section>
             <section className='products-section'>
                 {showProducts && <Products products={products} addToSelection={addToSelection} />}
             </section>
