@@ -44,7 +44,7 @@ function CartItems({ orderList, setTotalCost, removeFromCart }) {
 
                             return (
                                 <li key={`${product.name}-${index}`} className="cart-item">
-                                    <img className='product-image' src={product.image_url || product.clean_image_url} alt={product.name} />
+                                    <img className='product-image' src={product.image_url || product.clean_image_url} alt={product.name} /> <br />
                                     <span>{product.name}</span><br />
                                     <span>Quantity: {product.count}</span><br />
                                     <span>Cost: ${groupCost.toFixed(2)}</span><br />

@@ -2,7 +2,6 @@
 
 const baseUrl = "https://cdn-gateflipp.flippback.com/bf/flipp/items/search?"
 const locale = "en-ca"
-const postalCode = "V0E1K0"
 const sid = ""
 
 // Sort items by current_price in ascending order
@@ -12,7 +11,7 @@ function sortItems(data) {
 }
 
 // Fetch products for a single item
-async function getProducts(item) {
+async function getProducts(item, postalCode) {
     const query = item.name;
     const url = `${baseUrl}locale=${locale}&postal_code=${postalCode}&sid=${sid}&q=${query}`;
     console.log(url);
@@ -31,8 +30,8 @@ async function getProducts(item) {
 }
 
 // Get products for a single item
-async function processItems(items) {
-    const fetchPromises = items.map(async (item) => getProducts(item));
+async function processItems(items, postalCode) {
+    const fetchPromises = items.map(async (item) => getProducts(item, postalCode));
     const allResults = await Promise.all(fetchPromises);
     console.log(allResults.flat());
     return allResults.flat();

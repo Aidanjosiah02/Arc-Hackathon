@@ -15,6 +15,9 @@ function ShopList() {
     const [showProducts, setShowProducts] = useState(false);
     const [orderList, setOrderList] = useState([]);
     const [totalCost, setTotalCost] = useState(0);
+    const [postalCode, setPostalCode] = useState("V2C0C8");
+    const [postalCodeInput, setPostalCodeInput] = useState('');
+
 
     // Show products when they are available
     useEffect(() => {
@@ -54,7 +57,7 @@ function ShopList() {
     async function handleItemClick(item) {
         clearProducts();
         try {
-            const result = await processList([item]); // Only process the clicked item
+            const result = await processList([item], postalCode); // Only process the clicked item
             setProducts(result);
         } catch (error) {
             console.error("Error processing list:", error);
@@ -86,20 +89,34 @@ function ShopList() {
         console.log(orderList);
     }
 
-    // function Merchant({merchant}) {
-    //     return (
-    //         <div>
-    //             <h3>{merchant}</h3>
-    //         </div>
-    //     )
-    // }
+    function handlePostalCode(event) {
+        event.preventDefault();
+        let trimmed = postalCodeInput.trim();
+        if (trimmed) {
+            trimmed = trimmed.toLowerCase()
+            setPostalCode(trimmed);
+            console.log("Postal code set to:", trimmed);
+        }
+    }
 
     // Render the component
     return (
         <>
+            <form className='postal-code' onSubmit={handlePostalCode}>
+                <input
+                    type="text"
+                    placeholder="V2C0C8"
+                    value={postalCodeInput}
+                    onChange={(e) => setPostalCodeInput(e.target.value)}
+                    required
+                />
+                <button type="submit" style={{ margin: "10px" }}>Set postal code</button>
+            </form>
             <section className='items'>
+                <label htmlFor='add-type'>Add items to shopping list</label>
                 <form onSubmit={handleAdd} className='add-item'>
-                    <input type="text" placeholder="Apples" value={input} onChange={event => setInput(event.target.value)} required />
+                    
+                    <input type="text" id='add-type' placeholder="Apples" value={input} onChange={event => setInput(event.target.value)} required />
                     {/* We don't really need QUANTITY input here */}
                     {/* <input type="number" min="1" value={quantity} onChange={event => setQuantity(Number(event.target.value))} required /> */}
                     <button type="submit" style={{ margin: "10px" }}>Add</button>
@@ -112,7 +129,7 @@ function ShopList() {
                 <button onClick={clearProducts}>Clear Result</button>
             </section>
             <CartItems orderList={orderList} setTotalCost={setTotalCost} removeFromCart={removeFromCart} />
-            <section className="total-cost">Total Cost: ${totalCost}</section>
+            <section className="total-cost" style={{color: "white"}}>Total Cost: ${totalCost}</section>
             <section className='products-section'>
                 {showProducts && <Products products={products} addToSelection={addToSelection} />}
             </section>
