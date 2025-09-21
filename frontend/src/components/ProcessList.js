@@ -5,11 +5,13 @@ const locale = "en-ca"
 const postalCode = "V0E1K0"
 const sid = ""
 
+// Sort items by current_price in ascending order
 function sortItems(data) {
     const products = [...data.ecom_items, ...data.items]
     return products.sort((a, b) => a.current_price - b.current_price);
 }
 
+// Fetch products for a single item
 async function getProducts(item) {
     const query = item.name;
     const url = `${baseUrl}locale=${locale}&postal_code=${postalCode}&sid=${sid}&q=${query}`;
@@ -28,6 +30,7 @@ async function getProducts(item) {
     }
 }
 
+// Get products for a single item
 async function processItems(items) {
     const fetchPromises = items.map(async (item) => getProducts(item));
     const allResults = await Promise.all(fetchPromises);

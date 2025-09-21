@@ -1,0 +1,44 @@
+/* Container for all product items */
+.products {
+    
+}
+
+/* Product name/title */
+.product-name {
+    
+}
+
+/* Product price text */
+.price {
+    
+}
+
+/* Counter number between +/- buttons */
+.count-number {
+    margin: 10px 0;
+    font-size: larger;
+}
+
+
+/* Product box styles */
+.product-box {
+  border: #444 1px solid;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+  background-color: rgb(179, 255, 230);
+}
+
+/* Hover effect for product box */
+.product-box:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 6px 16px rgba(60, 220, 185, 0.18);
+  background-color: #e0fff6;
+}
+
+/* Animation for product image */
+.product-image {
+  animation: dropDown 1s ease;
+}

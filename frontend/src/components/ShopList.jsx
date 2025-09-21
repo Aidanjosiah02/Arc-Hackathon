@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import processList from './ProcessList';
-import ProductBox from './ProductBox';
+import processList from './processList';
+import Products from './Products';
 import CartItems from './CartItems';
+import "./styles/ShopList.css"
 
 // Shopping List Component
 // Includes the input form, item list, and product results
@@ -13,6 +14,7 @@ function ShopList() {
     const [products, setProducts] = useState([]);
     const [showProducts, setShowProducts] = useState(false);
     const [orderList, setOrderList] = useState([]);
+    const [totalCost, setTotalCost] = useState(0);
 
     // Show products when they are available
     useEffect(() => {
@@ -37,11 +39,22 @@ function ShopList() {
         setItems(items.filter((_, i) => i !== index));
     };
 
-    // Process the list and fetch products
-    async function handleSubmit() {
+    // Remove item from the cart by product ID
+    function removeFromCart(productId) { // Not used yet
+        setOrderList(orderList.filter(item => item.id !== productId));
+    }
+
+    // Clear products and hide the section
+    function clearProducts() {
+        setProducts([]);
+        setShowProducts(false);
+    }
+
+    // Process the list and fetch products for a specific item
+    async function handleItemClick(item) {
+        clearProducts();
         try {
-            const result = await processList(items); // ⏳ wait for it to resolve
-            console.log("Resolved products:", result);
+            const result = await processList([item]); // Only process the clicked item
             setProducts(result);
         } catch (error) {
             console.error("Error processing list:", error);
@@ -50,10 +63,14 @@ function ShopList() {
 
     // Render the list of items in <li>
     const itemList = items.map((item, idx) => (
-        <li key={idx} className='item'>
-            <span>{item.name} (x{item.quantity})</span>
+        <li key={idx} className='item' onClick={() => handleItemClick(item)}>
+            <span>{item.name}</span>
             <button
-                onClick={() => handleRemove(idx)}
+                onClick={e => {
+                    e.stopPropagation(); // Prevent triggering handleItemClick in parent <li>
+                    handleRemove(idx);
+                    clearProducts();
+                }}
                 className='remove-btn'
                 aria-label={`Remove ${item.name}`}
             >×</button>
@@ -69,6 +86,13 @@ function ShopList() {
         console.log(orderList);
     }
 
+    // function Merchant({merchant}) {
+    //     return (
+    //         <div>
+    //             <h3>{merchant}</h3>
+    //         </div>
+    //     )
+    // }
 
     // Render the component
     return (
@@ -76,17 +100,21 @@ function ShopList() {
             <section className='items'>
                 <form onSubmit={handleAdd} className='add-item'>
                     <input type="text" placeholder="Apples" value={input} onChange={event => setInput(event.target.value)} required />
-                    <input type="number" min="1" value={quantity} onChange={event => setQuantity(Number(event.target.value))} required />
-                    <button type="submit">Add</button>
+                    {/* We don't really need QUANTITY input here */}
+                    {/* <input type="number" min="1" value={quantity} onChange={event => setQuantity(Number(event.target.value))} required /> */}
+                    <button type="submit" style={{ margin: "10px" }}>Add</button>
+                    <button type="button" id="audio-btn" onClick={() => alert('Coming Soon...')}></button>
+                    <button type="button" id="scan-btn" onClick={() => alert('Coming Soon...')}></button>
                 </form>
                 <ul className='item-list'>
                     {itemList}
                 </ul>
-                <button onClick={handleSubmit}>Submit</button>
+                <button onClick={clearProducts}>Clear Result</button>
             </section>
-            <CartItems orderList={orderList} />
+            <CartItems orderList={orderList} setTotalCost={setTotalCost} removeFromCart={removeFromCart} />
+            <section className="total-cost">Total Cost: ${totalCost}</section>
             <section className='products-section'>
-                {showProducts && <ProductBox products={products} addToSelection={addToSelection} />}
+                {showProducts && <Products products={products} addToSelection={addToSelection} />}
             </section>
         </>
     );

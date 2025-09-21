@@ -1,6 +1,7 @@
 /* Center the content inside the root element */
 #root {
   text-align: center;
+  transition: background-color 0.5s;
 }
 
 /* Header styles */
@@ -14,16 +15,16 @@ header {
   justify-content: center;
   align-items: center;
   height: 55px;
-  display: flex;
-  align-items: center;
   font-size: 24px;
   gap: 20px;
+  transition: box-shadow 0.4s, background-image 0.6s;
 }
 
 /* Logo image inside header */
 header>img {
   width: 60px;
   margin-right: 15px;
+  transition: transform 0.4s;
 }
 
 /* Animate header title and ALL image on load */
@@ -32,12 +33,12 @@ header>img {
   animation: headerDropDown 1s ease;
 }
 
+/* Keyframes for header drop down animation */
 @keyframes headerDropDown {
   0% {
     transform: translateY(-100%);
     opacity: 0;
   }
-
   100% {
     transform: translateY(0);
     opacity: 1;
@@ -55,6 +56,7 @@ footer {
   padding: 30px 0;
   background-image: linear-gradient(to right, #90dc39, #39dcb9,);
   z-index: 1000;
+  transition: box-shadow 0.4s, background-image 0.6s;
 }
 
 /* Animate footer text on load */
@@ -62,156 +64,47 @@ footer>small {
   animation: footerFlowUp 1.2s ease;
 }
 
+/* Keyframes for footer flow up animation */
 @keyframes footerFlowUp {
   0% {
     transform: translateY(100%);
     opacity: 0;
   }
-
   100% {
     transform: translateY(0);
     opacity: 1;
   }
 }
 
-/* Add-item form container */
-.add-item {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 20px;
-}
 
-/* List styling for item list */
-.item-list {
-  list-style: none;
-  padding: 0;
-  max-width: 420px;
-  margin: 0 0;
-
-}
-
-/* Container for items */
-.items {
-  padding: 2rem;
-}
-
-/* Input styles for add-item form */
-.add-item input {
-  padding: 10px;
+/* Price text styles */
+.count-number {
+  margin: 0 10px;
   font-size: 16px;
-  border: #444 1px solid;
-  border-radius: 4px;
-  width: 200px;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.add-item input:focus {
-  border-color: #8ddc39;
-  box-shadow: 0 0 0 2px #cddc39;
-  outline: none;
-}
-
-/* Button styles for add-item form */
-.add-item button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  background-color: #8ddc39;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-/* Remove X button styles */
-.remove-btn {
-  background: transparent;
-  border: none;
-  color: red;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-
-/* List item styles */
-.item-list>li {
-  padding: 10px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: #444 1px solid;
-  transition: background-color 0.5s, color 0.5s, font-weight 0.5s;
-}
-
-/* Hover effect for list items */
-.item-list>li:hover {
-  font-weight: bold;
-  color: #333;
-  background-color: #d3ffc8;
-}
-
-
-.items {
-  grid-column: 1;
-}
-
-.products-section {
-  display: flex;
-  flex-direction: column;
-  grid-column: 2;
-  padding: 2rem;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* Make .products a responsive grid container that wraps items */
-.products-section .products {
-  display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  width: 100%;
-}
-
-.products-section img {
-  width: 100%;
-  height: 100px;
-  object-fit: contain;
-  max-height: 100px;
-}
-
-.product-box {
-  border: #444 1px solid;
-  border-radius: 8px;
-  padding: 10px;
+  width: 30px;
+  display: inline-block;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  background-color: rgb(179, 255, 230);
 }
 
-.product-image {
-  animation: dropDown 1s ease;
-}
-
-.cart-item {
-  border: #444 1px solid;
-  border-radius: 8px;
-  padding: 10px;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  background-color: rgb(255, 223, 179);
-}
-
+/* Keyframes for drop down animation */
 @keyframes dropDown {
   0% {
     transform: translateY(-50%);
     opacity: 0;
   }
-
   100% {
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+.total-cost {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px;
+  color: #333;
+  background-color: lightgreen;
+  padding: 10px;
+  border: 2px solid #39dcb9;
+  border-radius: 10px;
 }

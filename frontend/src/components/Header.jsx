@@ -4,7 +4,7 @@ export default function Header() {
     return (
         <header>
             <img className="logo" src={ Logo } alt="App Logo" />
-            <h1 className="title">Best-price app</h1>
+            <h1 className="title">PriceSleuth</h1>
         </header>
     );
 }
